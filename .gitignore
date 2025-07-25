@@ -1,0 +1,38 @@
+# Python 編譯快取
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 虛擬環境
+.venv/
+env/
+ENV/
+venv/
+
+# Flask/資料庫快取
+*.sqlite3
+*.db
+instance/
+
+# dotenv
+.env
+.env.*
+
+# 日誌檔案
+*.log
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# 系統垃圾檔
+.DS_Store
+Thumbs.db
+
+# 部署暫存或壓縮檔（可選）
+*.bak
+*.zip
+*.tar.gz
