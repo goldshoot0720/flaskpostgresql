@@ -16,17 +16,15 @@ ALLOWED_TABLES = {
 }
 
 def select_table(table_name):
-    # ✅ 安全性檢查
     if table_name not in ALLOWED_TABLES:
         raise ValueError("Invalid table name")
 
-    with connection.cursor() as cursor:
-        query = f"SELECT * FROM {table_name};"
-        cursor.execute(query)
-        columns = [desc[0] for desc in cursor.description]
-        rows = cursor.fetchall()
-        result = [dict(zip(columns, row)) for row in rows]
-    return result
+    with psycopg2.connect(url) as conn:  # ✅ 每次查詢使用獨立連線
+        with conn.cursor() as cursor:
+            cursor.execute(f"SELECT * FROM {table_name};")
+            columns = [desc[0] for desc in cursor.description]
+            rows = cursor.fetchall()
+            return [dict(zip(columns, row)) for row in rows]
 
 @app.route("/")
 def index():
