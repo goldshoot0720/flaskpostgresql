@@ -30,8 +30,8 @@ def select_table(table_name):
 def index():
     return "Hello, Flask with dynamic table query!"
 
-# ✅ 動態路由：例如 /api/bank, /api/article...
-@app.route('/api/<table_name>')
+# ✅ 動態路由：例如 /bank, /article...
+@app.route('<table_name>')
 def get_table_data(table_name):
     try:
         result = select_table(table_name)
